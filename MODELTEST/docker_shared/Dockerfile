@@ -1,11 +1,11 @@
-# Use an official Python runtime as a base image
-FROM python:3.9-slim
+# Use the official Python image from the Docker Hub
+FROM python:3.13
 
-# Set the working directory in the container
+# Set the working directory
 WORKDIR /flask_app
 
-# Copy requirements.txt and install dependencies
-COPY docker_shared/requirements.txt /flask_app/
+# Copy the requirements file and install dependencies
+COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy the application files into the container
@@ -14,5 +14,5 @@ COPY docker_shared/ /flask_app/
 # Expose port 8080 to the world outside this container
 EXPOSE 8080
 
-# Run app.py when the container launches
-CMD ["python", "app.py"]
+# Command to run the application
+CMD ["flask", "run", "--host=0.0.0.0", "--port=8080"]
