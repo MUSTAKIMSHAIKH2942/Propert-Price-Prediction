@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: flask-ml-app
+    env: docker
+    docker:
+      dockerfilePath: ./Dockerfile
+      port: 8080
+    buildCommand: |
+      echo "Building the Flask application"
+    startCommand: |
+      echo "Starting the Flask application"
