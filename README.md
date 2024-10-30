@@ -26,8 +26,8 @@ Docker to containerize the application
 
 Installation
 Clone the repository:
-git clone https://github.com/your-username/your-repo-name.git
-cd your-repo-name
+git clone https://github.com/MUSTAKIMSHAIKH2942/Propert-Price-Prediction.git
+cd Propert-Price-Prediction
 
 Set up environment variables: Configure paths and settings as needed in a .env file or in your Dockerfile.
 
