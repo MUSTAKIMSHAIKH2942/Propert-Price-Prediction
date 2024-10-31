@@ -3,17 +3,9 @@ XGBoost Price Prediction Flask Application
 This project is a Flask-based web application that predicts house prices using an XGBoost model. The app leverages Docker for containerization and Google Cloud Platform (GCP) for storing and downloading model files.
 
 Project Structure
-/Flask_APP/                                                                                                                                                                                                             
-│                                                                                                                                                                                                                          
-├── app/                       # Application source code                                                                                                                           
-│   ├── templates/                                                                                            
-│   │   └── index.html                                                             # HTML template for the web UI
-│   └── main.py                                                                      # Main Flask app script
-├── DATA/                                                                                 # Python dependencies
-├── Dockerfile                                                                              # Docker setup file for building the container
-├── credentials.json                                                                        # GCP credentials file for accessing GCS
-└── README.md                                                                            # Project documentation
-Requirements                                                     
+
+![Directory Structure Pic](https://github.com/MUSTAKIMSHAIKH2942/Propert-Price-Prediction/blob/main/filr%20structure.JPG)
+                                                    
 
 
 Python 3.9 (used in the Docker image)
