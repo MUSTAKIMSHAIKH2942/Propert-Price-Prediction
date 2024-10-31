@@ -68,9 +68,9 @@ Docker (for containerization)
 ## Installation
 ## Clone the repository:
 
-git clone https://github.com/your-username/your-repo-name.git
-cd your-repo-name
-Set up environment variables: Configure paths and environment variables in a .env file.
+git clone https://github.com/MUSTAKIMSHAIKH2942/Propert-Price-Prediction.git
+cd Propert-Price-Prediction
+Set up environment variables: Configure paths and environment variables requirement.txt install that or else just make a image of docker file and run the code of docker and also i have removed the credentials so put your service account json in credentials.json.
 
 ## Install dependencies:
 
