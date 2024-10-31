@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XGBoost Prediction</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #6a11cb, #2575fc);
+            margin: 0;
+            padding: 20px;
+            color: #fff;
+        }
+
+        h2 {
+            color: #fff;
+            text-align: center;
+        }
+
+        form {
+            background: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            max-width: 600px;
+            margin: auto;
+        }
+
+        .form-group {
+            flex: 1;
+            min-width: 220px;
+        }
+
+        input[type="text"],
+        input[type="radio"] {
+            margin: 10px 0;
+            padding: 10px;
+            width: 100%;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        label {
+            margin-top: 10px;
+            display: block;
+        }
+
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 10px;
+            width: 100%;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        h3 {
+            color: #fff;
+            text-align: center;
+        }
+
+        #predictionResult {
+            font-weight: bold;
+            font-size: 24px;
+        }
+
+        .radio-group {
+            display: flex;
+            gap: 20px;
+        }
+
+        .radio-group label {
+            display: flex;
+            align-items: center;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>Input Features for Prediction</h2>
+    <form id="predictionForm">
+        <div class="form-group">
+            <label for="longitude">Enter Longitude:</label>
+            <input type="text" id="longitude" name="longitude" placeholder="Enter the longitude" required>
+
+            <label for="latitude">Enter Latitude:</label>
+            <input type="text" id="latitude" name="latitude" placeholder="Enter the latitude" required>
+
+            <label for="median_income">Enter Median Income:</label>
+            <input type="text" id="median_income" name="median_income" placeholder="Enter the median income" required>
+
+            <div class="form-group">
+                <label>Ocean Proximity INLAND:</label>
+                <div class="radio-group">
+                    <label>
+                        <input type="radio" name="ocean_proximity_INLAND" value="1" required> Yes
+                    </label>
+                    <label>
+                        <input type="radio" name="ocean_proximity_INLAND" value="0" required> No
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="housing_median_age">Enter Housing Median Age:</label>
+            <input type="text" id="housing_median_age" name="housing_median_age" placeholder="Enter the housing median age" required>
+
+            <label for="total_rooms">Enter Total Rooms:</label>
+            <input type="text" id="total_rooms" name="total_rooms" placeholder="Enter the total number of rooms" required>
+
+            <label for="total_bedrooms">Enter Total Bedrooms:</label>
+            <input type="text" id="total_bedrooms" name="total_bedrooms" placeholder="Enter the total number of bedrooms" required>
+
+            <div class="form-group">
+                <label>Ocean Proximity NEAR OCEAN:</label>
+                <div class="radio-group">
+                    <label>
+                        <input type="radio" name="ocean_proximity_NEAR_OCEAN" value="1" required> Yes
+                    </label>
+                    <label>
+                        <input type="radio" name="ocean_proximity_NEAR_OCEAN" value="0" required> No
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <div style="flex-basis: 100%; text-align: center;">
+            <button type="submit">Predict</button>
+        </div>
+    </form>
+
+    <h3>Prediction: $<span id="predictionResult"></span></h3>
+
+    <script>
+        document.getElementById('predictionForm').addEventListener('submit', function (event) {
+            event.preventDefault();
+            const formData = new FormData(this);
+            fetch('/predict', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                document.getElementById('predictionResult').innerText = data.prediction;
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('There was an error making the prediction. Please try again.');
+            });
+        });
+    </script>
+</body>
+
+</html>
