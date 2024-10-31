@@ -1,8 +1,0 @@
-pandas
-scikit-learn
-xgboost
-joblib
-Flask
-requests
-google-cloud-storage
-
