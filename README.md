@@ -4,6 +4,7 @@ This project is a Flask-based web application that predicts house prices using a
 
 Project Structure
 
+
 ![Directory Structure Pic](https://github.com/MUSTAKIMSHAIKH2942/Propert-Price-Prediction/blob/main/filr%20structure.JPG)
                                                     
 XGBoost Price Prediction Web Application
